@@ -4,8 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio Individual 4.3</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Gastronomía Market</h1>
+    </header>
+    <main>
+        <section id="registrarDatos">
+            <div id="contenedorRegistrarProveedor">
+                <h2>Registro de Proveedor</h2>
+                <ul>
+                    <li>
+                        <label for="nombreProveedor">Nombre del Proveedor</label>
+                        <input type="text" name="nombreProveedor" id="nombreProveedor" placeholder="Nombre del Proveedor">
+                    </li>
+                    <li>
+                        <label for="nombreProveedor">Email del Proveedor</label>
+                        <input type="email" name="emailProveedor" id="emailProveedor" placeholder="Email del Proveedor">
+                    </li>
+                    <li>
+                        <label for="telefonoProveedor">Telefono del Proveedor</label>
+                        <input type="number" name="telefonoProveedor" id="telefonoProveedor" placeholder="Telefono del Proveedor">
+                    </li>
+                </ul>
+                <button id="registrarProveedorBtn">Registrar Proveedor</button>
+            </div>
+            <div id="contenedorRegistrarArticulo">
+                <h2>Registro de Articulo</h2>
+                <ul>
+                    <li>
+                        <label for="emailProveedorRegistrado">Email del Proveedor</label>
+                        <input type="text" name="emailProveedorRegistrado" id="emailProveedorRegistrado" placeholder="Nombre del Proveedor">
+                    </li>
+                    <li>
+                        <label for="nombreArticulo">Nombre del Articulo</label>
+                        <input type="text" name="nombreArticulo" id="nombreArticulo" placeholder="Nombre del Articulo">
+                    </li>
+                    <li>
+                        <label for="precioArticulo">Precio del Articulo</label>
+                        <input type="number" name="precioArticulo" id="precioArticulo" placeholder="Precio del Articulo">
+                    </li>
+                </ul>
+                <button id="registrarArticuloBtn">Registrar Articulo</button>
+            </div>
+            <div id="contenedorBuscarDatosProveedor">
+                <h2>Buscar Datos de Proveedor</h2>
+                <ul>
+                    <li>
+                        <label for="emailDatosProveedorBuscado">Email del Proveedor</label>
+                        <input type="text" name="emailDatosProveedorBuscado" id="emailDatosProveedorBuscado" placeholder="Email del Proveedor">
+                    </li>
+                </ul>
+                <button id="buscarDatosProveedorBtn">Buscar Datos</button>
+            </div>
+            <div id="contenedorBuscarArticuloEnProveedor">
+                <h2>Buscar Articulos por Proveedor</h2>
+                <ul>
+                    <li>
+                        <label for="emailProveedorBuscado">Email del Proveedor</label>
+                        <input type="text" name="emailProveedorBuscado" id="emailProveedorBuscado" placeholder="Email del Proveedor">
+                    </li>
+                </ul>
+                <button id="buscarArticulosProveedorBtn">Buscar</button>
+            </div>
+            <footer>
+                <p>Estudiante: Mauricio López</p>
+            </footer>
+        </section>
+        <section id="mostrarDatos">
+            <div id="contenedorMostrarDatos">
+                <h2>Mostrar Datos Registrados</h2>
+                <div id="contenedorMostrarProveedores">
+                    <table id="tablaProveedores">
+                        <caption>Proveedores Registrados</caption>
+                    </table>
+                </div>
+                <div id="contenedorMostrarArticulos">
+                    <table id="tablaArticulos">
+                        <caption>Articulos Registrados</caption>
+                    </table>
+                </div>
+            </div>
+            <div id="contenedorMostrarDatosBuscados">
+                <h2>Mostrar Datos Buscados</h2>
+                <div id="contenedorMostrarDatosProveedor">
+                    <table id="tablaDatosProveedor">
+                    </table>
+                </div>
+                <div id="contenedorMostrarArticulosPorProveedor">
+                    <table id="tablaArticulosPorProveedor">
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
