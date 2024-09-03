@@ -1,4 +1,4 @@
-import Proveedor from "./class/Proveedor.js";
+import {ProveedorInternacional, ProveedorNacional} from "./class/Proveedor.js";
 import Articulo from "./class/Articulo.js";
 
 const d = document;
@@ -11,19 +11,28 @@ const proveedores = [],
 const consultarCorreo = correo => 
     correos.has(correo);
 
-const verificarProveedor = (nombre, correo, telefono) => 
+const verificarProveedor = (nombre, correo, telefono, pais) => 
     consultarCorreo(correo)
         ? alert(`El email ${correo} ya existe, no se puede volver a registrar un proveedor con este correo`)
-        : anadirProveedor(nombre, correo, telefono);
+        : nacionalidadProveedor(nombre, correo, telefono, pais);
 
 const verificarArticulo = (correo, nombre, precio) => 
     consultarCorreo(correo)
         ? anadirArticulo(correo, nombre, precio)
         : alert(`El email ${correo} no existe`);
 
-const anadirProveedor = (nombre, correo, telefono) => {
+function nacionalidadProveedor(nombre, correo, telefono, pais) {
+    if(pais == "chile") {
+        let proveedor = new ProveedorNacional(nombre, correo, telefono, pais);
+        anadirProveedor(proveedor, correo);
+    } else {
+        let proveedor = new ProveedorInternacional(nombre, correo, telefono, pais);
+        anadirProveedor(proveedor, correo);
+    }
+}
+
+const anadirProveedor = (proveedor, correo) => {
     correos.add(correo);
-    let proveedor = new Proveedor(nombre, correo, telefono);
     proveedores.push(proveedor);
     infoProveedor.set(proveedor.getEmail(), proveedor.getId());
     mostrarProveedor();
@@ -51,27 +60,32 @@ const gestionarProveedores = [
         {
             nombre: "Mauricio", 
             email: "Mauri@email.com", 
-            telefono: 931823578
+            telefono: 931823578,
+            pais: "chile"
         },
         {
             nombre: "Pedro",
             email: "Pedro@email.com",
-            telefono: 985739285
+            telefono: 985739285,
+            pais: "argentina"
         },
         {
             nombre: "Ignacio", 
             email: "Ignacio@email.com", 
-            telefono: 985748397
+            telefono: 985748397,
+            pais: "chile"
         },
         {
             nombre: "Juan", 
             email: "Juan@email.com", 
-            telefono: 958362857
+            telefono: 958362857,
+            pais: "peru"
         },
         {
             nombre: "Gabriel", 
             email: "Gabriel@email.com", 
-            telefono: 985748398
+            telefono: 985748398,
+            pais: "chile"
         }
     ],
     gestionarArticulos = [
@@ -93,7 +107,7 @@ const gestionarProveedores = [
     ]
 
 gestionarProveedores.forEach(proveedor => {
-    verificarProveedor(proveedor.nombre, proveedor.email, proveedor.telefono);
+    verificarProveedor(proveedor.nombre, proveedor.email, proveedor.telefono, proveedor.pais);
 })
 
 gestionarArticulos.forEach(articulo => {
@@ -112,6 +126,7 @@ function mostrarProveedor() {
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Telefono</th>
+                <th>Pais</th>
             </tr>
         </thead>    
     `
@@ -122,6 +137,7 @@ function mostrarProveedor() {
                 <td>${proveedor.getNombre()}</td>
                 <td>${proveedor.getEmail()}</td>
                 <td>${proveedor.getTelefono()}</td>
+                <td>${proveedor.getPais()}</td>
             </tr>
         `
         $tablaProveedor.appendChild($tablaCuerpoProveedor);
@@ -158,7 +174,8 @@ d.getElementById("registrarProveedorBtn").addEventListener("click", e => {
     verificarProveedor(
         d.getElementById("nombreProveedor").value, 
         d.getElementById("emailProveedor").value, 
-        d.getElementById("telefonoProveedor").value);
+        d.getElementById("telefonoProveedor").value,
+        d.getElementById("paisProveedor").value.toLowerCase().trim());
 })
 
 d.getElementById("registrarArticuloBtn").addEventListener("click", e => {

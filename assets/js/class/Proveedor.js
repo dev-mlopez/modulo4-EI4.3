@@ -1,4 +1,4 @@
-export default class Proveedor {
+class Proveedor {
     static contadorId = 0;
 
     constructor(nombre, email, telefono) {
@@ -70,5 +70,77 @@ export default class Proveedor {
             `
             $tablaArticulo.appendChild($tablaCuerpoArticulo);
         })
+    }
+}
+
+export class ProveedorInternacional extends Proveedor {
+    constructor(nombre, email, telefono, pais) {
+        super(nombre, email, telefono);
+        this.pais = pais;
+        this.internacional = true;
+    }
+
+    getPais = () => this.pais;
+    setPais = pais => this.pais = pais;
+
+    getInfoProveedor() {
+        const $tablaProveedor = document.getElementById("tablaDatosProveedor"),
+            $tablaCuerpoProveedor = document.createElement("tbody");
+        $tablaProveedor.innerHTML = `
+            <caption>Datos del proveedor con email <span>${this.getEmail()}</span></caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Pais</th>
+                </tr>
+            </thead>
+        `
+        $tablaCuerpoProveedor.innerHTML += `
+            <tr>
+                <td>${this.getId()}</td>
+                <td>${this.getNombre()}</td>
+                <td>${this.getTelefono()}</td>
+                <td>${this.getPais()}</td>
+            </tr>
+        `
+        $tablaProveedor.appendChild($tablaCuerpoProveedor);
+    }
+}
+
+export class ProveedorNacional extends Proveedor {
+    constructor(nombre, email, telefono, pais) {
+        super(nombre, email, telefono)
+        this.pais = pais;
+        this.internacional = false;
+    }
+
+    getPais = () => this.pais;
+    setPais = pais => this.pais = pais;
+
+    getInfoProveedor() {
+        const $tablaProveedor = document.getElementById("tablaDatosProveedor"),
+            $tablaCuerpoProveedor = document.createElement("tbody");
+        $tablaProveedor.innerHTML = `
+            <caption>Datos del proveedor con email <span>${this.getEmail()}</span></caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Pais</th>
+                </tr>
+            </thead>
+        `
+        $tablaCuerpoProveedor.innerHTML += `
+            <tr>
+                <td>${this.getId()}</td>
+                <td>${this.getNombre()}</td>
+                <td>${this.getTelefono()}</td>
+                <td>${this.getPais()}</td>
+            </tr>
+        `
+        $tablaProveedor.appendChild($tablaCuerpoProveedor);
     }
 }
